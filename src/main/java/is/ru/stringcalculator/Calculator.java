@@ -21,17 +21,20 @@ public class Calculator {
         
         int sum = 0;
         for(int value : values) {
+            if(value > 1000) {
+                continue;
+            }
             sum += value;
         }
 
         return sum;
     }
-
+    
     /* Parse the input string `input` into an array of integers */
     private static int[] parseIntegers(String input) {
         String[] splitInput = input.split("(,|\n)");
         int[] ret = new int[splitInput.length];
-
+        
         for(int i = 0; i < splitInput.length; i++) {
             ret[i] = Integer.parseInt(splitInput[i]);
         }
