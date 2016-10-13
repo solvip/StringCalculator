@@ -39,5 +39,24 @@ public class CalculatorTest {
             Assert.assertEquals(expectedValues[i], Calculator.add(inputs[i]));
         }
     }
+
+    /* Assert that inputs with negative numbers throw an exception */
+    @Test
+    public void testNegativeInputThrows() {
+        try {
+            Calculator.add("1,-1,1");
+            Assert.fail("Expected negative inputs to throw an exception, but I got none");
+        } catch(IllegalArgumentException e) {
+            Assert.assertEquals(e.getMessage(), "Negatives not allowed: -1");
+        }
+
+        try {
+            Calculator.add("2,-4,3,-5");
+            Assert.fail("Expected negative inputs to throw an exception, but I got none");
+        } catch(IllegalArgumentException e) {
+            Assert.assertEquals(e.getMessage(), "Negatives not allowed: -4,-5");
+        }
+
+    }
 }
 
