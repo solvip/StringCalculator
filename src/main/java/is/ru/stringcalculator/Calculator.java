@@ -1,6 +1,6 @@
 package is.ru.stringcalculator;
 
-class Calculator {
+public class Calculator {
 
     /**
      * Takes a string of comma or newline seperated integer values and returns their sum.
@@ -13,11 +13,24 @@ class Calculator {
             return 0;
         }
 
-        int sum = 0;        
-        for(String integer : input.split("(,|\n)")) {
-            sum += Integer.parseInt(integer);
+        int[] values = parseIntegers(input);
+        int sum = 0;
+        for(int value : values) {
+            sum += value;
         }
 
         return sum;
+    }
+
+    /* Parse the input string `input` into an array of integers */
+    private static int[] parseIntegers(String input) {
+        String[] splitInput = input.split("(,|\n)");
+        int[] ret = new int[splitInput.length];
+
+        for(int i = 0; i < splitInput.length; i++) {
+            ret[i] = Integer.parseInt(splitInput[i]);
+        }
+
+        return ret;
     }
 }
