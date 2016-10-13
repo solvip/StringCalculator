@@ -1,5 +1,8 @@
 package is.ru.stringcalculator;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Calculator {
 
     /**
@@ -14,6 +17,8 @@ public class Calculator {
         }
 
         int[] values = parseIntegers(input);
+        validate(values);
+        
         int sum = 0;
         for(int value : values) {
             sum += value;
@@ -32,5 +37,20 @@ public class Calculator {
         }
 
         return ret;
+    }
+
+    /* Validate the array of values; throw IllegalArgumentException if any are illegal */
+    private static void validate(int[] values) throws IllegalArgumentException {
+        List<String> illegalValues = new ArrayList<String>();
+        for(int value : values) {
+            if(value < 0) {
+                illegalValues.add(Integer.toString(value));
+            }
+        }
+
+        if(illegalValues.size() > 0) {
+            String errmsg = String.format("Negatives not allowed: %s", String.join(",", illegalValues));
+            throw new IllegalArgumentException(errmsg);
+        }
     }
 }
