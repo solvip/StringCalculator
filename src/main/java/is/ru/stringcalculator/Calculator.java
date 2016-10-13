@@ -7,8 +7,10 @@ public class Calculator {
 
     /**
      * Takes a string of comma or newline seperated integer values and returns their sum.
+     * If the input string starts with "//<FOO>\n"; then <FOO> will be used as the delimiter instead
+     * of comma/newline.
      * The empty string is equivalent to 0(what a crazy API)
-     * @param input Comma or newline-seperated integer values
+     * @param input Comma, newline or custom delimiter-seperated integer values
      * @return The sum of the input
      */
     public static int add(String input) {
@@ -32,7 +34,17 @@ public class Calculator {
     
     /* Parse the input string `input` into an array of integers */
     private static int[] parseIntegers(String input) {
-        String[] splitInput = input.split("(,|\n)");
+        String delimiter = "(,|\n)";
+
+        /* If we have a custom delimiter, we parse it and advance input past it */
+        if(input.startsWith("//")) {
+            int delimiterEnd = input.indexOf("\n");
+            delimiter = input.substring(2, delimiterEnd);
+            input = input.substring(delimiterEnd+1);
+        }
+        
+
+        String[] splitInput = input.split(delimiter);
         int[] ret = new int[splitInput.length];
         
         for(int i = 0; i < splitInput.length; i++) {
