@@ -3,9 +3,9 @@ package is.ru.stringcalculator;
 class Calculator {
 
     /**
-     * Takes a string of comma-seperated integer values and returns their sum.
+     * Takes a string of comma or newline seperated integer values and returns their sum.
      * The empty string is equivalent to 0(what a crazy API)
-     * @param input Comma-seperated integer values
+     * @param input Comma or newline-seperated integer values
      * @return The sum of the input
      */
     public static int add(String input) {
@@ -14,7 +14,7 @@ class Calculator {
         }
 
         int sum = 0;        
-        for(String integer : input.split(",")) {
+        for(String integer : input.split("(,|\n)")) {
             sum += Integer.parseInt(integer);
         }
 
