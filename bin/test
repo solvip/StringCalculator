@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eu
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+LIB_DIR="$SCRIPT_DIR/../lib"
+CLASS_DIR="$SCRIPT_DIR/../classes"
+
+"$SCRIPT_DIR/build"
+
+java -cp "${CLASS_DIR}/:${LIB_DIR}/*" org.junit.runner.JUnitCore is.ru.stringcalculator.CalculatorTest 

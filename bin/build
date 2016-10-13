@@ -1,0 +1,11 @@
+#!/bin/bash
+set -eu
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+LIB_DIR="$SCRIPT_DIR/../lib"
+CLASS_DIR="$SCRIPT_DIR/../classes"
+if [ ! -d $CLASS_DIR ]; then
+    mkdir $CLASS_DIR
+fi
+
+javac -classpath "${CLASS_DIR}:${LIB_DIR}/*" -d "$CLASS_DIR" src/{main,test}/java/is/ru/stringcalculator/*.java
