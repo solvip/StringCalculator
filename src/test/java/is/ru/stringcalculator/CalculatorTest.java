@@ -5,11 +5,13 @@ import org.junit.Test;
 
 public class CalculatorTest {
 
+    /* Assert that the empty input string results in 0 */
     @Test
     public void testEmptyString() {
         Assert.assertEquals(0, Calculator.add(""));
     }
 
+    /* Assert that valid input strings correctly sum */
     @Test
     public void testSums() {
         String[] inputs = {
