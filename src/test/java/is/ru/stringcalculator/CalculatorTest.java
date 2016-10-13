@@ -11,15 +11,25 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testSimpleSums() {
-        Assert.assertEquals(1, Calculator.add("1"));
-        Assert.assertEquals(3, Calculator.add("1,2"));
-    }
+    public void testSums() {
+        String[] inputs = {
+            "1",
+            "1,2",
+            "1,2,3",
+            "1,3,4,2,1,4,5,7,12,5,124,213,4,5,5,4,3,3,4",
+            "1,31,123,4537346,2352352,2352355,636346,4323,4,2,1,4,5,7,12,5,124,213,4,5,5,4,3,3,4",
+        };
+        int[] expectedValues = {
+            1,
+            3,
+            6,
+            409,
+            9883282,
+        };
 
-    @Test
-    public void testComplicatedSums() {
-        String input = "1,3,4,2,1,4,5,7,12,5,124,213,4,5,5,4,3,3,4";
-        Assert.assertEquals(409, Calculator.add(input));
+        for(int i = 0; i < inputs.length; i++) {
+            Assert.assertEquals(expectedValues[i], Calculator.add(inputs[i]));
+        }
     }
 }
 
