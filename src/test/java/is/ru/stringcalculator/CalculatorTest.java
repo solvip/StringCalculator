@@ -64,5 +64,13 @@ public class CalculatorTest {
             Assert.assertEquals(e.getMessage(), "Negatives not allowed: -4,-5");
         }
     }
+
+    /* Assert that we can use custom different input delimiters */
+    @Test
+    public void testCustomInputDelimiters() {
+        Assert.assertEquals(0, Calculator.add("//;\n0"));
+        Assert.assertEquals(3, Calculator.add("//-\n0-1-2"));
+        Assert.assertEquals(3, Calculator.add("//ff\n0ff1ff2"));
+    }
 }
 
